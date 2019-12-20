@@ -47,12 +47,15 @@ transform on the supplied data. Example:
 
 ```js
 const data = {
-  transforms: { foo: data => data.toUpperCase() },
+  transforms: { foo: (data, context) => data.toUpperCase() },
   foo: 'foo'
 }
 
 // __foo__ => foo_transform(data = 'foo') => 'FOO'
 ```
+
+The `context` object contains properties: `source` (input file path),
+`dest` (output file path), `key` (the matched key).
 
 
 ### `__` handling

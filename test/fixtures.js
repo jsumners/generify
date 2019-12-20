@@ -66,7 +66,12 @@ function createTest (err, expected, fixture) {
       data.copyAsNamed = ['__init__.py']
     }
     if (fixture === 'transforms') {
-      data.transforms = { foo: d => d.toUpperCase() }
+      data.transforms = {
+        foo: (d, ctx) => {
+          if (ctx.dest.endsWith('b')) return d
+          return d.toUpperCase()
+        }
+      }
       data.foo = 'foo'
     }
 
